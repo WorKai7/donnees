@@ -1,5 +1,8 @@
 import requests
+import os
 from bs4 import BeautifulSoup
+
+os.chdir(os.path.dirname(__file__))
 
 # Fonction utile pour échapper aux caractères spéciaux
 def escape_xml(text):
