@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add .
+          git add vinci.rss
           git commit -m "Update RSS" || echo "No changes to commit"
 
       - name: Push changes
