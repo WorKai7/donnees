@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Flux RSS infos VINCI</title>
-        <link>file:///c%3A/Users/jerome.vandewalle/Documents/tests/vinci.rss</link>
+        <link>https://workai7.github.io/donnees/vinci.rss</link>
         <description>Flux RSS contenant les informations du site de VINCI, généré par un script de scrapping</description>
 
         <item>
