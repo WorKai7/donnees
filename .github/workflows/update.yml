@@ -28,7 +28,11 @@ jobs:
         
         # A améliorer pour update tous les scripts de génération
       - name: Run script
-        run: python generation/vinci/generate.py
+        run: |
+          for script in $(find generation -type f -name "*.py"); do
+            echo "Running $script"
+            python "$script"
+          done
 
       - name: Commit changes
         run: |
