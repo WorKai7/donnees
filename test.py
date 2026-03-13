@@ -86,7 +86,7 @@ with open("vinci.rss", "w", encoding="utf-8") as rss:
     rss.write('<rss version="2.0">\n')
     rss.write('    <channel>\n')
     rss.write('        <title>Flux RSS infos VINCI</title>\n')
-    rss.write('        <link>file:///c%3A/Users/jerome.vandewalle/Documents/tests/vinci.rss</link>\n')
+    rss.write('        <link>https://workai7.github.io/auto-rss/vinci.rss</link>\n')
     rss.write('        <description>Flux RSS contenant les informations du site de VINCI, généré par un script de scrapping</description>\n')
 
     # Boucle sur les articles
