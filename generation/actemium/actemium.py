@@ -26,7 +26,9 @@ def scrap_description(url: str):
 
     soup = BeautifulSoup(article_response.text, "html.parser")
 
-    return soup.find("p").get_text(strip=True)
+    paragraphes = [p for p in soup.find_all("p") if p.get_text(strip=True) != ""]
+
+    return paragraphes[0].get_text(strip=True)
 
 
 
