@@ -31,14 +31,14 @@ session.headers.update(headers)
 
 url_list = []
 
-def scrap(url: str, first_time: bool = False, affichage: bool = False):
+def scrap(url: str, category: str, file: str, first_page: bool = False, affichage: bool = False):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
 
     # Instanciation de soup
     soup = BeautifulSoup(response.text, "html.parser")
 
-    if first_time:
+    if first_page:
         pager_items = soup.find_all("li", class_="pager__item")
         last_pager_item = [item for item in pager_items if item.get("class") == ["pager__item"] or item.get("class") == ["pager__item", "is-active"]][-1]
         last_page_number = 0
@@ -49,14 +49,14 @@ def scrap(url: str, first_time: bool = False, affichage: bool = False):
                 last_page_number = int(text[-1])
 
         for i in range(1, last_page_number):
-            url_list.append(base_url + "/newsroom?f[0]=newsroom_content_type:communique&page=" + str(i))
+            url_list.append(url + "&page=" + str(i))
 
 
     # Recherche des divs qu'on a besoin
-    articles_divs = soup.find_all("article", class_="pr-teaser")
-    titres = soup.find_all(class_="pr-teaser__title")
-    images_divs = soup.find_all("div", class_="pr-teaser__image")
-    details_divs = soup.find_all("div", class_="pr-teaser__details")
+    articles_divs = soup.find_all("article", class_=f"{category}-teaser")
+    titres = soup.find_all(class_=f"{category}-teaser__title")
+    images_divs = soup.find_all("div", class_=f"{category}-teaser__image")
+    details_divs = soup.find_all("div", class_=f"{category}-teaser__details")
 
 
     articles = []
@@ -106,7 +106,7 @@ def scrap(url: str, first_time: bool = False, affichage: bool = False):
 
 
     # Ecriture dans un fichier XML pour générer un flux RSS
-    with open("rss/presse.rss", "a", encoding="utf-8") as rss:
+    with open(f"rss/{file}", "a", encoding="utf-8") as rss:
 
         # Boucle sur les articles
         for article in articles:
@@ -129,27 +129,56 @@ def scrap(url: str, first_time: bool = False, affichage: bool = False):
 
 
 
-def start_file():
-    with open("rss/presse.rss", "w", encoding="utf-8") as rss:
+def start_file(file: str, title: str, link: str, desc: str):
+    with open(f"rss/{file}", "w", encoding="utf-8") as rss:
         rss.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         rss.write('<rss version="2.0">\n')
         rss.write('    <channel>\n')
-        rss.write('        <title>Flux RSS infos VINCI</title>\n')
-        rss.write('        <link>https://workai7.github.io/auto-rss/rss/presse.rss</link>\n')
-        rss.write('        <description>Flux RSS contenant les informations du site de VINCI, généré par un script de scrapping</description>\n')
+        rss.write(f'        <title>{title}</title>\n')
+        rss.write(f'        <link>{link}</link>\n')
+        rss.write(f'        <description>{desc}</description>\n')
 
 
-def end_file():
-    with open("rss/presse.rss", "a", encoding="utf-8") as rss:
+def end_file(file: str):
+    with open(f"rss/{file}", "a", encoding="utf-8") as rss:
         rss.write('\n    </channel>\n')
         rss.write('</rss>\n')
 
 
-start_file()
 
-scrap(base_url + "/newsroom", True)
+# ----- FICHIER PRESSE -----
+
+start_file(
+    "presse.rss",
+    "Flux RSS communiqués de presse VINCI",
+    "https://workai7.github.io/auto-rss/rss/presse.rss",
+    "Flux RSS contenant les informations sur les communiqués de presse du site de VINCI, généré par un script de scrapping"
+)
+
+scrap(base_url + "/newsroom?f[0]=newsroom_content_type:communique", "pr", "presse.rss", True)
 
 for url in url_list:
-    scrap(url)
+    scrap(url, "pr", "presse.rss")
 
-end_file()
+end_file("presse.rss")
+
+
+
+url_list.clear()
+
+
+# ----- FICHIER ACTU -----
+
+start_file(
+    "actu.rss",
+    "Flux RSS actualités VINCI",
+    "https://workai7.github.io/auto-rss/rss/actu.rss",
+    "Flux RSS contenant les informations sur les actualités du site de VINCI, généré par un script de scrapping"
+)
+
+scrap(base_url + "/newsroom?f[0]=newsroom_content_type:actu", "actu", "actu.rss")
+
+for url in url_list:
+    scrap(url, "actu", "actu.rss")
+
+end_file("actu.rss")

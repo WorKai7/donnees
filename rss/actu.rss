@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Flux RSS actualités VINCI</title>
+        <link>https://workai7.github.io/auto-rss/rss/actu.rss</link>
+        <description>Flux RSS contenant les informations sur les actualités du site de VINCI, généré par un script de scrapping</description>
+
+        <item>
+            <title>Congrès mondial de la route : des solutions VINCI pour la résilience et la décarbonation routière</title>
+            <link>https://www.vinci.com/newsroom/actualites/congres-mondial-de-la-route-des-solutions-vinci-pour-la-resilience-et-la</link>
+            <description>Événements</description>
+            <pubDate>04 mars 2026</pubDate>
+            <enclosure url="https://www.vinci.com/sites/default/files/styles/newsroom_highlight_mobile_343x228/public/medias/image/2026/03/solarvia.jpg?h=346bc062&amp;itok=MHGj9inJ" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>VINCI et Leonard, mécènes du festival de cinéma Close-Up</title>
+            <link>https://www.vinci.com/newsroom/actualites/vinci-et-leonard-mecenes-du-festival-de-cinema-close</link>
+            <description>Événements-France</description>
+            <pubDate>05 janvier 2026</pubDate>
+            <enclosure url="https://www.vinci.com/sites/default/files/styles/newsroom_mobile_79x52/public/medias/image/2026/01/festival%20Close-up.jpeg?h=a0c1a9c0&amp;itok=QH2SW10U" type="image/jpeg" />
+        </item>
+
+    </channel>
+</rss>

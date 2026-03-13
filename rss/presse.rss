@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
-        <title>Flux RSS infos VINCI</title>
+        <title>Flux RSS communiqués de presse VINCI</title>
         <link>https://workai7.github.io/auto-rss/rss/presse.rss</link>
-        <description>Flux RSS contenant les informations du site de VINCI, généré par un script de scrapping</description>
+        <description>Flux RSS contenant les informations sur les communiqués de presse du site de VINCI, généré par un script de scrapping</description>
 
         <item>
             <title>Publication de la version anglaise du document d’enregistrement universel 2025</title>
