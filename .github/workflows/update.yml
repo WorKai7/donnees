@@ -31,7 +31,7 @@ jobs:
         run: |
           for script in $(find generation -type f -name "*.py"); do
             echo "Running $script"
-            python "$script"
+            python "$script" || echo "Script failed: $script"
           done
 
       - name: Commit changes
