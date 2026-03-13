@@ -21,6 +21,15 @@ base_url = "https://www.vinci.com"
 # URL spécifique pour les communiques de presse : https://www.vinci.com/newsroom?f[0]=newsroom_content_type:communique
 #                                 Pour les actu : https://www.vinci.com/newsroom?f[0]=newsroom_content_type:actu
 
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
+}
+
+session = requests.Session()
+session.headers.update(headers)
+
+
+
 response = requests.get(base_url + "/newsroom")
 response.raise_for_status()
 
