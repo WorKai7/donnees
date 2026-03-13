@@ -16,7 +16,7 @@ os.chdir(os.path.dirname(__file__))
 
 
 # Connexion au site
-base_url = "https://www.vinci-energies.com/actualites/"
+base_url = "https://www.actemium.fr/realisations-evenements/"
 
 
 def scrap_description(url: str):
@@ -26,7 +26,7 @@ def scrap_description(url: str):
 
     soup = BeautifulSoup(article_response.text, "html.parser")
 
-    return soup.find("p", class_="text").get_text(strip=True)
+    return soup.find("p").get_text(strip=True)
 
 
 
@@ -40,26 +40,20 @@ soup = BeautifulSoup(response.text, "html.parser")
 
 articles = []
 
-images_divs = soup.find_all("div", class_="featured-image")
+images_divs = soup.find_all("div", class_="image")
 dates = soup.find_all("time", class_="date")
-titres = [titre for titre in soup.find_all("h4", class_="title") if not titre.find_parent("div", class_="content")]
-links = soup.find_all("a", class_="intern-link")
+titres = soup.find_all("h3", class_="title")
+links = soup.find_all("a", class_="link-minimal-arrow")
 
 
 for i in range(len(images_divs)):
     article = {}
 
-    img_style = images_divs[i].get("style")
-    url_search = re.search(r"url\((.*?)\)", img_style)
-
-    if url_search:
-        image = url_search.group(1).strip('\'"')
-
     link = links[i].get("href")
 
     article["Titre"] = titres[i].get_text(strip=True)
     article["Date"] = dates[i].get_text(strip=True)
-    article["Image"] = image
+    article["Image"] = images_divs[i].get("data-bg")
     article["Lien"] = link
     article["Description"] = scrap_description(link)
 
@@ -70,15 +64,15 @@ for i in range(len(images_divs)):
 # Ecriture
 
 start_file(
-    "vinci-energies/actu.rss",
-    "Flux RSS actualités Vinci Energies",
-    "https://workai7.github.io/auto-rss/rss/vinci-energies/actu.rss",
-    "Flux RSS contenant les informations sur les actualités du site de Vinci Energies, généré par un script de scrapping"
+    "actemium/actu.rss",
+    "Flux RSS actualités Actemium",
+    "https://workai7.github.io/auto-rss/rss/actemium/actu.rss",
+    "Flux RSS contenant les informations sur les actualités du site d'Actemium, généré par un script de scrapping"
 )
 
 for article in articles:
     write_xml(
-        "vinci-energies/actu.rss",
+        "actemium/actu.rss",
         article["Titre"],
         article["Description"],
         article["Image"],
@@ -86,7 +80,7 @@ for article in articles:
         article["Date"]
     )
 
-end_file("vinci-energies/actu.rss")
+end_file("actemium/actu.rss")
 
 
 print("\nDone\n")

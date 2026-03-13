@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Flux RSS actualités Actemium</title>
+        <link>https://workai7.github.io/auto-rss/rss/actemium/actu.rss</link>
+        <description>Flux RSS contenant les informations sur les actualités du site d'Actemium, généré par un script de scrapping</description>
+
+        <item>
+            <title>Romain Rodrigues, Actemium Nancy : la course du cœur</title>
+            <link>https://www.actemium.fr/realisations-evenements/romain-rodrigues-actemium-nancy-la-course-du-coeur/</link>
+            <description></description>
+            <pubDate>10.03.2026</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2026/03/1773073504780.jpeg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>OPS : Actemium franchit un cap avec E-ctopus</title>
+            <link>https://www.actemium.fr/realisations-evenements/ops-actemium-franchit-un-cap-avec-e-ctopus/</link>
+            <description></description>
+            <pubDate>04.03.2026</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2026/03/Ectopus_v1-scaled.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Cerisea : une usine-test innovante de Michelin soutenue par le savoir-faire Actemium</title>
+            <link>https://www.actemium.fr/realisations-evenements/cerisea-une-usine-test-innovante-de-michelin-soutenue-par-le-savoir-faire-actemium/</link>
+            <description></description>
+            <pubDate>10.02.2026</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2026/02/Photos-ACTEMIUM-7.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Actemium et Axians au Salon Global Industrie Paris 2026</title>
+            <link>https://www.actemium.fr/realisations-evenements/actemium-et-axians-au-salon-global-industrie-paris-2026/</link>
+            <description></description>
+            <pubDate>10.02.2026</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2026/02/Banniere_FR_5X148_1859.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Actemium automatise un nouvel entrepôt pour GLS France</title>
+            <link>https://www.actemium.fr/realisations-evenements/actemium-automatise-un-nouvel-entrepot-pour-gls-france/</link>
+            <description></description>
+            <pubDate>19.12.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/12/actemium_GLS-scaled.png" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Journée Actemium 5.0 Châlons-en-Champagne</title>
+            <link>https://www.actemium.fr/realisations-evenements/journee-actemium-5-0-chalons-en-champagne/</link>
+            <description></description>
+            <pubDate>08.12.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/12/20221027125633-d75596c8-cu_e520x360.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Avec Nemera, Actemium Rouen Automation développe son savoir-faire dans les systèmes de tubage</title>
+            <link>https://www.actemium.fr/realisations-evenements/avec-nemera-actemium-rouen-automation-developpe-son-savoir-faire-dans-les-systemes-de-tubage/</link>
+            <description></description>
+            <pubDate>30.10.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/06/P1455159.00_15_28_33.Still024-scaled.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Actemium modernise les process vinicoles du Château Larose Trintaudon</title>
+            <link>https://www.actemium.fr/realisations-evenements/actemium-modernise-les-process-vinicoles-du-chateau-larose-trintaudon/</link>
+            <description></description>
+            <pubDate>09.10.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/10/Les-Chateaux-104-scaled.jpg" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Actemium Maintenance Mécanique Dunkerque chargée du suivi technique de la station hydrogène SHYMED</title>
+            <link>https://www.actemium.fr/realisations-evenements/actemium-maintenance-mecanique-dunkerque-chargee-du-suivi-technique-de-la-station-hydrogene-shymed/</link>
+            <description></description>
+            <pubDate>06.10.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/10/Hynamics-Shymed_drone-scaled.png" type="image/jpeg" />
+        </item>
+
+        <item>
+            <title>Le port de Lyon se modernise avec Actemium Maintenance Belfort</title>
+            <link>https://www.actemium.fr/realisations-evenements/le-port-de-lyon-se-modernise-avec-actemium-maintenance-belfort/</link>
+            <description></description>
+            <pubDate>01.09.2025</pubDate>
+            <enclosure url="https://www.actemium.fr/app/uploads/sites/85/2025/09/image.png" type="image/jpeg" />
+        </item>
+
+    </channel>
+</rss>
