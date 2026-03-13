@@ -106,7 +106,7 @@ def scrap(url: str, first_time: bool = False, affichage: bool = False):
 
 
     # Ecriture dans un fichier XML pour générer un flux RSS
-    with open("vinci.rss", "a", encoding="utf-8") as rss:
+    with open("rss/presse.rss", "a", encoding="utf-8") as rss:
 
         # Boucle sur les articles
         for article in articles:
@@ -130,17 +130,17 @@ def scrap(url: str, first_time: bool = False, affichage: bool = False):
 
 
 def start_file():
-    with open("vinci.rss", "w", encoding="utf-8") as rss:
+    with open("rss/presse.rss", "w", encoding="utf-8") as rss:
         rss.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         rss.write('<rss version="2.0">\n')
         rss.write('    <channel>\n')
         rss.write('        <title>Flux RSS infos VINCI</title>\n')
-        rss.write('        <link>https://workai7.github.io/auto-rss/vinci.rss</link>\n')
+        rss.write('        <link>https://workai7.github.io/auto-rss/rss/presse.rss</link>\n')
         rss.write('        <description>Flux RSS contenant les informations du site de VINCI, généré par un script de scrapping</description>\n')
 
 
 def end_file():
-    with open("vinci.rss", "a", encoding="utf-8") as rss:
+    with open("rss/presse.rss", "a", encoding="utf-8") as rss:
         rss.write('\n    </channel>\n')
         rss.write('</rss>\n')
 
