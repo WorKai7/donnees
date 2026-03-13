@@ -2,37 +2,29 @@ import requests
 import os
 from bs4 import BeautifulSoup
 
-os.chdir(os.path.dirname(__file__))
+# Import grâce au package utils
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parents[2]))
 
-# Fonction utile pour échapper aux caractères spéciaux
-def escape_xml(text):
-    return (
-        text.replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
-            .replace('"', "&quot;")
-            .replace("'", "&apos;")
-    )
+from utils.start_xml_file import start_file
+from utils.end_xml_file import end_file
+from utils.write_xml import write_xml
+
+
+os.chdir(os.path.dirname(__file__))
 
 
 # Connexion au site
-base_url = "https://www.vinci.com"
+base_url = "https://www.vinci.com/newsroom"
 
 # URL spécifique pour les communiques de presse : https://www.vinci.com/newsroom?f[0]=newsroom_content_type:communique
 #                                 Pour les actu : https://www.vinci.com/newsroom?f[0]=newsroom_content_type:actu
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0 Safari/537.36"
-}
-
-session = requests.Session()
-session.headers.update(headers)
-
-
 url_list = []
 
 def scrap(url: str, category: str, file: str, first_page: bool = False, affichage: bool = False):
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
     response.raise_for_status()
 
     # Instanciation de soup
@@ -106,61 +98,46 @@ def scrap(url: str, category: str, file: str, first_page: bool = False, affichag
 
 
     # Ecriture dans un fichier XML pour générer un flux RSS
-    with open(f"../../rss/vinci/{file}", "a", encoding="utf-8") as rss:
+    with open(f"../../rss/{file}", "a", encoding="utf-8") as rss:
 
         # Boucle sur les articles
         for article in articles:
-            rss.write('\n        <item>\n')
-            rss.write(f'            <title>{escape_xml(article["Titre"])}</title>\n')
-            rss.write(f'            <link>{escape_xml(article["Lien"])}</link>\n')
 
             # Description avec la catégorie et le pays
             if article["Pays"] == "Non spécifié":
-                description = escape_xml(article["Categorie"])
+                description = article["Categorie"]
             else:
-                description = escape_xml(article["Categorie"]) + "-" + escape_xml(article["Pays"])
+                description = article["Categorie"] + " - " + article["Pays"]
+            
+            write_xml(
+                file,
+                article["Titre"],
+                description,
+                article["Image"],
+                article["Lien"],
+                article["Date"]
+            )
 
-            rss.write(f'            <description>{description}</description>\n')
-            rss.write(f'            <pubDate>{escape_xml(article["Date"])}</pubDate>\n')
-            rss.write(f'            <enclosure url="{escape_xml(article["Image"])}" type="image/jpeg" />\n')
-            rss.write('        </item>\n')
 
     print("Articles générés pour la page", url)
-
-
-
-def start_file(file: str, title: str, link: str, desc: str):
-    with open(f"../../rss/vinci/{file}", "w", encoding="utf-8") as rss:
-        rss.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        rss.write('<rss version="2.0">\n')
-        rss.write('    <channel>\n')
-        rss.write(f'        <title>{title}</title>\n')
-        rss.write(f'        <link>{link}</link>\n')
-        rss.write(f'        <description>{desc}</description>\n')
-
-
-def end_file(file: str):
-    with open(f"../../rss/vinci/{file}", "a", encoding="utf-8") as rss:
-        rss.write('\n    </channel>\n')
-        rss.write('</rss>\n')
 
 
 
 # ----- FICHIER PRESSE -----
 
 start_file(
-    "presse.rss",
+    "vinci/presse.rss",
     "Flux RSS communiqués de presse VINCI",
-    "https://workai7.github.io/auto-rss/rss/presse.rss",
+    "https://workai7.github.io/auto-rss/rss/vinci/presse.rss",
     "Flux RSS contenant les informations sur les communiqués de presse du site de VINCI, généré par un script de scrapping"
 )
 
-scrap(base_url + "/newsroom?f[0]=newsroom_content_type:communique", "pr", "presse.rss", True)
+scrap(base_url + "?f[0]=newsroom_content_type:communique", "pr", "vinci/presse.rss", True)
 
 for url in url_list:
-    scrap(url, "pr", "presse.rss")
+    scrap(url, "pr", "vinci/presse.rss")
 
-end_file("presse.rss")
+end_file("vinci/presse.rss")
 
 
 
@@ -170,15 +147,15 @@ url_list.clear()
 # ----- FICHIER ACTU -----
 
 start_file(
-    "actu.rss",
+    "vinci/actu.rss",
     "Flux RSS actualités VINCI",
     "https://workai7.github.io/auto-rss/rss/vinci/actu.rss",
     "Flux RSS contenant les informations sur les actualités du site de VINCI, généré par un script de scrapping"
 )
 
-scrap(base_url + "/newsroom?f[0]=newsroom_content_type:actu", "actu", "actu.rss")
+scrap(base_url + "?f[0]=newsroom_content_type:actu", "actu", "vinci/actu.rss")
 
 for url in url_list:
-    scrap(url, "actu", "actu.rss")
+    scrap(url, "actu", "vinci/actu.rss")
 
-end_file("actu.rss")
+end_file("vinci/actu.rss")
